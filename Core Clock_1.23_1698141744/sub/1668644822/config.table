@@ -1,0 +1,158 @@
+{
+  ["events"]	= {
+      ["程序启动"]	= "\
+\
+for content in io.lines(\"/storage/emulated/0/CoreClock/files/时钟大小.txt\") do\
+      local ww=content:match(\"【仅时钟】(.-)【仅时钟_】\")\
+ \
+布局2=\
+{\
+  LinearLayout,\
+  orientation='vertical';--横向或者纵向布局\
+  layout_width='fill';--布局宽度\
+  layout_height='fill';--布局高度\
+  background='#0';--布局背景颜色\
+  {\
+    LinearLayout,--线性布局\
+    orientation='horizontal',--方向\
+    layout_width='fill',--宽度\
+    layout_height='fill',--高度\
+    layout_gravity='center';--重力\
+    background='',--背景颜色或图片路径\
+    {\
+      CardView;--卡片控件\
+      --layout_margin='8dp';--边距\
+      layout_gravity='center';--重力\
+      --左:left 右:right 中:center 顶:top 底:bottom\
+      elevation='0dp';--阴影\
+      layout_width='fill';--宽度\
+      layout_height='fill';--高度\
+      CardBackgroundColor='#0';--颜色\
+      --radius='8dp';--圆角\
+      {\
+        TextView;--文本控件\
+        layout_width='fill';--文本宽度\
+        layout_height='fill';--文本高度\
+        gravity='center';--重力属性\
+        textColor='#ffffffff';--文字颜色\
+        text='时间准备中…';--显示的文字\
+        textSize=ww..'dp';--文字大小\
+        id='时';\
+      };\
+    };\
+\
+  };\
+};\
+activity.setContentView(loadlayout(布局2))\
+end\
+\
+function 间()\
+  秒()\
+end\
+\
+function 秒()\
+  时.setText(os.date(\"%H\")..\" : \"..os.date(\"%M\"))\
+  \
+end\
+function 刷新()\
+  require \"import\"\
+  while true do--执行循环命令\
+    Thread.sleep(100)--延迟执行\
+    call(\"间\")\
+  end\
+end\
+\
+thread(刷新)--运行线程,循环刷新时间\
+--[[\
+设置下划线(时分秒,1)\
+\
+\
+]]\
+\
+\
+activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)\
+\
+\
+import \"android.content.pm.ActivityInfo\"\
+\
+\
+" ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象，新标题=..." ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      } ;
+  ["switch"]	= {
+      ["显示状态栏"]	= false ;
+      ["横屏"]	= true ;
+      ["支持滑动页面"]	= false ;
+      ["启用启动图"]	= false ;
+      } ;
+  ["colors"]	= {
+      ["悬浮按钮"]	= "#ff33a7aa" ;
+      ["进度条"]	= "#00000000" ;
+      ["侧滑栏列表文字"]	= "#ff333333" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["侧滑栏列表图标"]	= "#ff757575" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["侧滑栏背景"]	= "#ffffffff" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["顶栏"]	= "#ff2c2e43" ;
+      ["悬浮按钮图标"]	= "#ffffffff" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      ["顶栏部件触摸"]	= "#22ffffff" ;
+      } ;
+  ["view_attribute"]	= {
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["顶栏高度"]	= "56dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      ["搜索栏阴影强度"]	= "2dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["顶栏标题"]	= "Title" ;
+      } ;
+  ["toolbar"]	= {
+      ["输入栏模式"]	= true ;
+      ["icon_btns"]	= {
+          } ;
+      ["启用搜索功能"]	= false ;
+      ["搜索框提示"]	= "" ;
+      ["menus"]	= {
+          [1]	= {
+              ["name"]	= "退出" ;
+              ["onClick"]	= "退出页面()" ;
+              } ;
+          } ;
+      ["搜索URL"]	= "" ;
+      } ;
+  ["web"]	= {
+      ["浏览器用户标识"]	= "默认" ;
+      ["启用进度条"]	= false ;
+      ["网页沉浸"]	= false ;
+      ["启用长按菜单"]	= false ;
+      ["启动网页"]	= "" ;
+      ["支持打开外部应用"]	= false ;
+      } ;
+  ["fltBtn"]	= {
+      ["点击事件"]	= "--悬浮按钮点击时执行的事件" ;
+      ["图标"]	= "" ;
+      ["显示"]	= false ;
+      } ;
+  ["sidebar"]	= {
+      ["items"]	= {
+          } ;
+      ["启用顶部图片"]	= false ;
+      ["启用"]	= true ;
+      } ;
+  ["web_control"]	= {
+      } ;
+  } ;
